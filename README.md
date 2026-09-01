@@ -1,6 +1,6 @@
 # Ecommerce Frontend
 
-Application front-end Angular du projet e-commerce fullstack, construite pour consommer l'API REST du [backend Spring Boot](https://github.com/Soifiaouir/Projet-E-commerce-back). associé.
+Application front-end Angular du projet e-commerce fullstack, construite pour consommer l'API REST du [backend Spring Boot](https://github.com/Soifiaouir/Projet-E_commerce-Back). associé.
 
 Projet réalisé dans le cadre d'un portfolio, avec pour objectif de démontrer une maîtrise concrète d'Angular en conditions réelles, couplée à une API Java sécurisée par JWT.
 
