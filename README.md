@@ -1,59 +1,59 @@
-# EcommerceFrontend
+# Ecommerce Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.7.
+Application front-end Angular du projet e-commerce fullstack, construite pour consommer l'API REST du [backend Spring Boot](#) associé.
 
-## Development server
+Projet réalisé dans le cadre d'un portfolio, avec pour objectif de démontrer une maîtrise concrète d'Angular en conditions réelles, couplée à une API Java sécurisée par JWT.
 
-To start a local development server, run:
+## Stack technique
+
+- **Angular** (composants standalone, syntaxe de contrôle de flux moderne `@if`/`@for`)
+- **TypeScript**
+- **SCSS/SASS**
+- **RxJS** pour la gestion des flux asynchrones
+- **JWT** pour l'authentification, via un intercepteur HTTP dédié
+
+## Prérequis
+
+- Node.js (version LTS)
+- Angular CLI (`npm install -g @angular/cli`)
+- Le backend Spring Boot doit tourner en local sur `http://localhost:8080` (voir le README du projet backend)
+
+## Installation
+
+```bash
+npm install
+```
+
+## Lancer le projet en local
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+L'application est alors accessible sur `http://localhost:4200`.
 
-## Code scaffolding
+## Structure du projet
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Organisation par couche technique :
+src/app/
+├── components/ # composants (login, produit-list, panier, navbar, ...)
+├── services/ # communication avec l'API backend
+├── models/ # interfaces TypeScript (contrats de données)
+├── guards/ # protection des routes (auth, admin)
+├── interceptors/ # ajout automatique du token JWT aux requêtes
+├── directives/
+├── pipes/
+└── utils/
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Fonctionnalités
 
-```bash
-ng generate --help
-```
+- Inscription / connexion (JWT)
+- Consultation du catalogue produits (liste, détail, filtres par catégorie)
+- Panier (ajout, modification, suppression)
+- Passage de commande et historique
+- Espace admin : gestion des produits, catégories et commandes
 
-## Building
+## Backend associé
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Ce front consomme l'API du projet backend Spring Boot : authentification JWT, catalogue produits/catégories, panier, commandes.
