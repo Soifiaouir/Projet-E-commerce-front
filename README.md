@@ -36,15 +36,11 @@ L'application est alors accessible sur `http://localhost:4200`.
 
 Organisation par couche technique :
 src/app/
-├── components/ # composants (login, produit-list, panier, navbar, ...)
-├── services/ # communication avec l'API backend
-├── models/ # interfaces TypeScript (contrats de données)
-├── guards/ # protection des routes (auth, admin)
-├── interceptors/ # ajout automatique du token JWT aux requêtes
-├── directives/
-├── pipes/
-└── utils/
-
+- components/ # composants (login, produit-list, panier, navbar, ...)
+- services/ # communication avec l'API backend
+- models/ # interfaces TypeScript (contrats de données)
+- guards/ # protection des routes (auth, admin)
+- interceptors/ # ajout automatique du token JWT aux requêtes
 
 ## Fonctionnalités
 
