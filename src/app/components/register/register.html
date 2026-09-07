@@ -1,1 +1,51 @@
-<p>register works!</p>
+<div class="register-container">
+  <h2>Créer un compte</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email">
+      @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+        <span class="error">Email invalide</span>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password" formControlName="password">
+      @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+        <span class="error">8 caractères minimum</span>
+      }
+    </div>
+
+    <fieldset formGroupName="address">
+      <legend>Adresse</legend>
+
+      <div class="form-field">
+        <label for="street">Rue</label>
+        <input id="street" type="text" formControlName="street">
+      </div>
+
+      <div class="form-field">
+        <label for="postalCode">Code postal</label>
+        <input id="postalCode" type="text" formControlName="postalCode">
+      </div>
+
+      <div class="form-field">
+        <label for="city">Ville</label>
+        <input id="city" type="text" formControlName="city">
+      </div>
+
+      <div class="form-field">
+        <label for="country">Pays</label>
+        <input id="country" type="text" formControlName="country">
+      </div>
+    </fieldset>
+
+    @if (errorMessage) {
+      <p class="error-message">{{ errorMessage }}</p>
+    }
+
+    <button type="submit" [disabled]="registerForm.invalid">Créer mon compte</button>
+  </form>
+</div>
