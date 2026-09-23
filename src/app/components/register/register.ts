@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth';
 export class Register {
 
   registerForm: FormGroup;
-  errorMessage: string = '';
+  errorMessage = signal('');
 
   constructor(
     private fb: FormBuilder,
@@ -37,14 +37,14 @@ export class Register {
       return;
     }
 
-    this.errorMessage = '';
+    this.errorMessage.set('');
 
     this.authService.register(this.registerForm.value).subscribe({
       next: () => {
         this.router.navigate(['/produits']);
       },
-      error: (err) => {
-        this.errorMessage = 'Cet email est peut-être déjà utilisé';
+      error: () => {
+        this.errorMessage.set('Cet email est peut-être déjà utilisé');
       }
     });
   }

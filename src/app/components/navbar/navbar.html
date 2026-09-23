@@ -1,1 +1,21 @@
-<p>navbar works!</p>
+<nav class="navbar">
+  <a routerLink="/produits" class="logo">MonShop</a>
+
+  <div class="nav-links">
+    <a routerLink="/produits">Catalogue</a>
+
+    @if (authService.isLoggedIn()) {
+      <a routerLink="/panier">Panier</a>
+      <a routerLink="/commandes">Mes commandes</a>
+
+      @if (authService.isAdmin()) {
+        <a routerLink="/admin/produits">Admin</a>
+      }
+
+      <button (click)="onLogout()">Déconnexion</button>
+    } @else {
+      <a routerLink="/login">Connexion</a>
+      <a routerLink="/register">Inscription</a>
+    }
+  </div>
+</nav>

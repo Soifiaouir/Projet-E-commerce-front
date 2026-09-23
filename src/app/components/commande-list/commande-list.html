@@ -1,1 +1,24 @@
-<p>commande-list works!</p>
+<div class="commande-list-container">
+  <h2>Mes commandes</h2>
+
+  @if (loading()) {
+    <p>Chargement...</p>
+  } @else if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  } @else if (commandes().length === 0) {
+    <p>Vous n'avez pas encore passé de commande.</p>
+  } @else {
+    @for (commande of commandes(); track commande.id) {
+      <div class="commande-card">
+        <p>Commande #{{ commande.id }} — {{ commande.dateCommande | date:'dd/MM/yyyy' }}</p>
+        <p>Statut : {{ commande.status }}</p>
+        <ul>
+          @for (item of commande.items; track item.id) {
+            <li>{{ item.product.name }} x {{ item.quantity }} — {{ item.prixUnitaire }} € / unité</li>
+          }
+        </ul>
+        <p>Total : {{ commande.montantTotal }} €</p>
+      </div>
+    }
+  }
+</div>
