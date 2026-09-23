@@ -1,0 +1,39 @@
+<div class="commande-container">
+  <h2>Récapitulatif de la commande</h2>
+
+  @if (loading()) {
+    <p>Chargement...</p>
+  } @else if (success()) {
+    <p>Votre commande a bien été enregistrée !</p>
+    <a routerLink="/commandes">Voir mes commandes</a>
+  } @else if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  } @else if (!panier() || panier()!.items.length === 0) {
+    <p>Votre panier est vide.</p>
+    <a routerLink="/produits">Voir le catalogue</a>
+  } @else {
+    <div class="commande-items">
+      @for (item of panier()!.items; track item.id) {
+        <div class="commande-item">
+          <p>{{ item.product.name }} x {{ item.quantity }}</p>
+          <p>{{ item.product.price * item.quantity }} €</p>
+        </div>
+      }
+    </div>
+
+    <p class="commande-total">Total : {{ getTotal() }} €</p>
+
+    @if (address()) {
+      <div class="commande-adresse">
+        <h4>Adresse de livraison</h4>
+        <p>{{ address()!.street }}</p>
+        <p>{{ address()!.postalCode }} {{ address()!.city }}</p>
+        <p>{{ address()!.country }}</p>
+      </div>
+    }
+
+    <button (click)="onConfirmerCommande()" [disabled]="submitting()">
+      {{ submitting() ? 'Envoi en cours...' : 'Confirmer la commande' }}
+    </button>
+  }
+</div>

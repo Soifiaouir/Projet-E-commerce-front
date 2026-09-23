@@ -1,1 +1,16 @@
-<p>produit-card works!</p>
+<div class="produit-card">
+  <img [src]="produit.imageUrl" [alt]="produit.name">
+  <h3>{{ produit.name }}</h3>
+  <p class="category">{{ produit.category.name }}</p>
+  <p class="price">{{ produit.price }} €</p>
+
+  <a [routerLink]="['/produits', produit.id]" class="btn-detail">Voir le produit</a>
+
+  <button (click)="onAddToCart()" [disabled]="adding()">
+    {{ adding() ? 'Ajout...' : 'Ajouter au panier' }}
+  </button>
+
+  @if (addedMessage()) {
+    <p class="added-message">{{ addedMessage() }}</p>
+  }
+</div>

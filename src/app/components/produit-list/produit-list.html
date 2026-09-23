@@ -1,1 +1,28 @@
-<p>produit-list works!</p>
+<div class="produit-list-container">
+  <h2>Catalogue</h2>
+
+  <div class="filters">
+    <button (click)="onCategoryChange(null)" [class.active]="selectedCategoryId() === null">
+      Toutes
+    </button>
+    @for (cat of categories(); track cat.id) {
+      <button (click)="onCategoryChange(cat.id)" [class.active]="selectedCategoryId() === cat.id">
+        {{ cat.name }}
+      </button>
+    }
+  </div>
+
+  @if (loading()) {
+    <p>Chargement...</p>
+  } @else if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  } @else if (produits().length === 0) {
+    <p>Aucun produit trouvé.</p>
+  } @else {
+    <div class="produit-grid">
+      @for (produit of produits(); track produit.id) {
+        <app-produit-card [produit]="produit"></app-produit-card>
+      }
+    </div>
+  }
+</div>

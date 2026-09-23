@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth';
 export class Login {
 
   loginForm: FormGroup;
-  errorMessage: string = '';
+  errorMessage = signal('');
 
   constructor(
     private fb: FormBuilder,
@@ -31,14 +31,14 @@ export class Login {
       return;
     }
 
-    this.errorMessage = '';
+    this.errorMessage.set('');
 
     this.authService.login(this.loginForm.value).subscribe({
       next: () => {
         this.router.navigate(['/produits']);
       },
-      error: (err) => {
-        this.errorMessage = 'Email ou mot de passe incorrect';
+      error: () => {
+        this.errorMessage.set('Email ou mot de passe incorrect');
       }
     });
   }

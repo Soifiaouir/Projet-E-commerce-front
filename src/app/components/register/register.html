@@ -42,8 +42,8 @@
       </div>
     </fieldset>
 
-    @if (errorMessage) {
-      <p class="error-message">{{ errorMessage }}</p>
+    @if (errorMessage()) {
+      <p class="error-message">{{ errorMessage() }}</p>
     }
 
     <button type="submit" [disabled]="registerForm.invalid">Créer mon compte</button>
